@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Input from 'react-input-autosize';
+import TetherComponent from 'react-tether';
 import classNames from 'classnames';
 import blacklist from 'blacklist';
 
@@ -1013,30 +1014,38 @@ const Select = React.createClass({
 		}
 
 		return (
-			<div ref="wrapper"
-				 className={className}
-				 style={this.props.wrapperStyle}>
-				{this.renderHiddenField(valueArray)}
-				<div ref="control"
-					className="Select-control"
-					style={this.props.style}
-					onKeyDown={this.handleKeyDown}
-					onMouseDown={this.handleMouseDown}
-					onTouchEnd={this.handleTouchEnd}
-					onTouchStart={this.handleTouchStart}
-					onTouchMove={this.handleTouchMove}
-				>
+			<TetherComponent
+				attachment="top center"
+				constraints={[{
+					to: 'scrollParent',
+					attachment: 'together'
+				}]}
+			>
+				<div ref="wrapper"
+					 className={className}
+					 style={this.props.wrapperStyle}>
+					{this.renderHiddenField(valueArray)}
+					<div ref="control"
+						 className="Select-control"
+						 style={this.props.style}
+						 onKeyDown={this.handleKeyDown}
+						 onMouseDown={this.handleMouseDown}
+						 onTouchEnd={this.handleTouchEnd}
+						 onTouchStart={this.handleTouchStart}
+						 onTouchMove={this.handleTouchMove}
+					>
 					<span className="Select-multi-value-wrapper" id={this._instancePrefix + '-value'}>
 						{this.renderValue(valueArray, isOpen)}
 						{this.renderInput(valueArray, focusedOptionIndex)}
 					</span>
-					{removeMessage}
-					{this.renderLoading()}
-					{this.renderClear()}
-					{this.renderArrow()}
+						{removeMessage}
+						{this.renderLoading()}
+						{this.renderClear()}
+						{this.renderArrow()}
+					</div>
+					{isOpen ? this.renderOuter(options, !this.props.multi ? valueArray : null, focusedOption) : null}
 				</div>
-				{isOpen ? this.renderOuter(options, !this.props.multi ? valueArray : null, focusedOption) : null}
-			</div>
+			</TetherComponent>
 		);
 	}
 
