@@ -218,7 +218,7 @@ const Select = React.createClass({
         }
 
         // Tether container width
-        if ($this.props.isOpen) {
+        if (this.props.isOpen) {
             let tetherNode = ReactDOM.findDOMNode(this.refs.tether);
             let controlNode = ReactDOM.findDOMNode(this.refs.control);
             tetherNode.width = controlNode.width;
