@@ -1015,11 +1015,9 @@ const Select = React.createClass({
 
 		return (
 			<TetherComponent
-				attachment="top center"
-				constraints={[{
-					to: 'scrollParent',
-					attachment: 'together'
-				}]}
+				attachment="top left"
+				targetAttachment="bottom left"
+				targetModifier="visible"
 			>
 				<div ref="wrapper"
 					 className={className}

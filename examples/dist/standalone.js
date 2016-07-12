@@ -3429,11 +3429,9 @@ var Select = _react2['default'].createClass({
 		return _react2['default'].createElement(
 			_reactTether2['default'],
 			{
-				attachment: 'top center',
-				constraints: [{
-					to: 'scrollParent',
-					attachment: 'together'
-				}]
+				attachment: 'top left',
+				targetAttachment: 'bottom left',
+				targetModifier: 'visible'
 			},
 			_react2['default'].createElement(
 				'div',
