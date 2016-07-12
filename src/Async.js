@@ -140,6 +140,9 @@ const Async = React.createClass({
 			return input;
 		}) : input;
 	},
+	onOpen() {
+		this.loadOptions('');
+	},
 	render () {
 		let { noResultsText } = this.props;
 		let { isLoading, options } = this.state;
@@ -158,6 +161,7 @@ const Async = React.createClass({
 				noResultsText={noResultsText}
 				onInputChange={this.loadOptions}
 				options={options}
+				onOpen={this.onOpen}
 				placeholder={placeholder}
 				/>
 		);
