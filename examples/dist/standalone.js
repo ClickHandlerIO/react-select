@@ -2595,6 +2595,13 @@ var Select = _react2["default"].createClass({
             this.setState({ isFocused: false }); // eslint-disable-line react/no-did-update-set-state
             this.closeMenu();
         }
+
+        // Tether container width
+        if ($this.props.isOpen) {
+            var tetherNode = _reactDom2["default"].findDOMNode(this.refs.tether);
+            var controlNode = _reactDom2["default"].findDOMNode(this.refs.control);
+            tetherNode.width = controlNode.width;
+        }
     },
 
     focus: function focus() {
@@ -3428,7 +3435,9 @@ var Select = _react2["default"].createClass({
             );
         }
 
-        console.log("render here a");
+        var tetherStyle = {
+            zIndex: '2000'
+        };
         return _react2["default"].createElement(
             "div",
             { ref: "wrapper",
@@ -3440,7 +3449,9 @@ var Select = _react2["default"].createClass({
                 {
                     attachment: "top left",
                     targetAttachment: "bottom left",
-                    targetModifier: "visible"
+                    targetModifier: "visible",
+                    style: tetherStyle,
+                    ref: "tether"
                 },
                 _react2["default"].createElement(
                     "div",

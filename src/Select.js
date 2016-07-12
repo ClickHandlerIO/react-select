@@ -216,6 +216,13 @@ const Select = React.createClass({
             this.setState({isFocused: false}); // eslint-disable-line react/no-did-update-set-state
             this.closeMenu();
         }
+
+        // Tether container width
+        if ($this.props.isOpen) {
+            let tetherNode = ReactDOM.findDOMNode(this.refs.tether);
+            let controlNode = ReactDOM.findDOMNode(this.refs.control);
+            tetherNode.width = controlNode.width;
+        }
     },
 
     focus () {
@@ -1012,7 +1019,9 @@ const Select = React.createClass({
             );
         }
 
-        console.log("render here a");
+        var tetherStyle = {
+            zIndex: '2000',
+        };
         return (
             <div ref="wrapper"
                  className={className}
@@ -1022,6 +1031,8 @@ const Select = React.createClass({
                     attachment="top left"
                     targetAttachment="bottom left"
                     targetModifier="visible"
+                    style={tetherStyle}
+                    ref="tether"
                 >
                     <div ref="control"
                          className="Select-control"
