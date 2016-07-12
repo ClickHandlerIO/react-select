@@ -217,11 +217,11 @@ const Select = React.createClass({
             this.closeMenu();
         }
 
-        // Tether container width
-        if (this.props.isOpen) {
-            let tetherNode = ReactDOM.findDOMNode(this.refs.tether);
+        // Tethered container width
+        if (this.state.isOpen) {
+            let menuContainerNode = ReactDOM.findDOMNode(this.refs.menuContainer);
             let controlNode = ReactDOM.findDOMNode(this.refs.control);
-            tetherNode.width = controlNode.width;
+            menuContainerNode.style.width = controlNode.offsetWidth + "px";
         }
     },
 
@@ -1032,7 +1032,6 @@ const Select = React.createClass({
                     targetAttachment="bottom left"
                     targetModifier="visible"
                     style={tetherStyle}
-                    ref="tether"
                 >
                     <div ref="control"
                          className="Select-control"
