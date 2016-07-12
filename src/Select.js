@@ -166,6 +166,12 @@ const Select = React.createClass({
         if (this.props.autofocus) {
             this.focus();
         }
+
+        window.addEventListener('resize', this.positionMenuContainer, true);
+    },
+
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.positionMenuContainer);
     },
 
     componentWillReceiveProps(nextProps) {
@@ -216,7 +222,10 @@ const Select = React.createClass({
             this.setState({isFocused: false}); // eslint-disable-line react/no-did-update-set-state
             this.closeMenu();
         }
+        this.positionMenuContainer();
+    },
 
+    positionMenuContainer() {
         // Tethered container width
         if (this.state.isOpen) {
             let menuContainerNode = ReactDOM.findDOMNode(this.refs.menuContainer);

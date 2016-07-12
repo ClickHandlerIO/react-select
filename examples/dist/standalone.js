@@ -2545,6 +2545,12 @@ var Select = _react2["default"].createClass({
         if (this.props.autofocus) {
             this.focus();
         }
+
+        window.addEventListener('resize', this.positionMenuContainer, true);
+    },
+
+    componentWillUnmount: function componentWillUnmount() {
+        window.removeEventListener('resize', this.positionMenuContainer);
     },
 
     componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
@@ -2595,7 +2601,10 @@ var Select = _react2["default"].createClass({
             this.setState({ isFocused: false }); // eslint-disable-line react/no-did-update-set-state
             this.closeMenu();
         }
+        this.positionMenuContainer();
+    },
 
+    positionMenuContainer: function positionMenuContainer() {
         // Tethered container width
         if (this.state.isOpen) {
             var menuContainerNode = _reactDom2["default"].findDOMNode(this.refs.menuContainer);
